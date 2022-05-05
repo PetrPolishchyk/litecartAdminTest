@@ -8,6 +8,7 @@ public class LitecartAdmin {
     @Test
     public void testName (){
         Selenide.open("http://localhost/litecart/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
+        Selenide.Wait();
         System.out.println("Success");
     }
 }
