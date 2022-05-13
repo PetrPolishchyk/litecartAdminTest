@@ -20,7 +20,7 @@ public class Authorization extends BasedTestClass{
         String x = String.valueOf($(By.xpath("//a[@title='Logout']")).getText());
         //check
         $x("//a[@title='Logout']").shouldBe(Condition.visible.because("Element "+x+" is not visible"));
-        System.out.println("Login success");
+        System.out.println("Login us <" + user + "> is success");
     }
 
     @Test

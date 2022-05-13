@@ -7,7 +7,7 @@ public class Dataprovider {
     public static Object[][] users() {
         return new Object[][]{
                 new Object[]{"admin", "admin"},
-                new Object[]{"admin2", "admin2"},
+                new Object[]{"peter", "passWord"},
         };
     }
 }
