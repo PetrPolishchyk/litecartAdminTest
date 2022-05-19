@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="autotest suite" configfailurepolicy="continue" parallel="tests">
-    <test name="litecartadmin">
-<!--        <classes>-->
-<!--            <class name="petr.example.Authorization"></class>-->
-<!--        </classes>-->
-        <packages>
-            <package name="petr.example.*"></package>
-        </packages>
+    <groups>
+        <run>
+            <include name="auth"/>
+            <include name="checkCustomers"/>
+            <include name="checkCatalog"/>
+        </run>
+    </groups>
+    <test name="authorization">
+        <classes>
+            <class name="petr.example.Authorization"></class>
+        </classes>
+    </test>
+    <test name="checkForCustomers">
+        <classes>
+            <class name="petr.example.customers.CustomersTest"></class>
+            <class name="petr.example.customers.ImportExportTest"></class>
+            <class name="petr.example.customers.NewsletterTest"></class>
+        </classes>
+    </test>
+    <test name="checkForCatalog">
+        <classes>
+            <class name="petr.example.catalog.Catalog"></class>
+            <class name="petr.example.catalog.Attributes"></class>
+            <class name="petr.example.catalog.Manufacturers"></class>
+            <class name="petr.example.catalog.Suppliers"></class>
+            <class name="petr.example.catalog.DeliveryStatuses"></class>
+            <class name="petr.example.catalog.SoldOutStatuses"></class>
+            <class name="petr.example.catalog.QuantityUnits"></class>
+            <class name="petr.example.catalog.CsvImportExport"></class>
+        </classes>
     </test>
 </suite>

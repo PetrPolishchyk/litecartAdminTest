@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.$;
-@Test
+//@Test
 public class Authorization extends BasedTestClass{
-    @Test(dataProvider = "users", dataProviderClass = Dataprovider.class)
+    @Test(dataProvider = "users", dataProviderClass = Dataprovider.class, groups = {"auth"})
     public void usersCanAuthorise(String user, String password) {
         //login
         Selenide.open("/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
@@ -20,10 +20,11 @@ public class Authorization extends BasedTestClass{
         String x = String.valueOf($(By.xpath("//a[@title='Logout']")).getText());
         //check
         $x("//a[@title='Logout']").shouldBe(Condition.visible.because("Element "+x+" is not visible"));
-        System.out.println("Login us <" + user + "> is success");
+        System.out.println("Login as <" + user + "> is success");
+        //$x("//a[@title='Logout']").click();
     }
 
-    @Test
+    @Test(groups = {"auth"})
     public void usersHasWrongPassword() {
 
     }
