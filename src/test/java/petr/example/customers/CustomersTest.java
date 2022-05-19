@@ -9,7 +9,7 @@ public class CustomersTest {
     @BeforeGroups(value = "checkCustomers", dependsOnGroups = {"auth"})
     public void authorization() {
         Authorization auth = new Authorization();
-        auth.usersCanAuthorise("admin", "admin");
+        auth.authorization("admin", "admin");
     }
     @Test(groups = {"checkCustomers"}, priority = 1)
     public void checkCustomers() {

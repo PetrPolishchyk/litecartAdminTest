@@ -4,8 +4,8 @@
     <groups>
         <run>
             <include name="auth"/>
-            <include name="checkCustomers"/>
-            <include name="checkCatalog"/>
+            <exclude name="checkCustomers"/>
+            <exclude name="checkCatalog"/>
         </run>
     </groups>
     <test name="authorization">
