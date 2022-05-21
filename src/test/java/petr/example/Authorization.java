@@ -7,32 +7,21 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.$;
+
 //@Test
-public class Authorization extends BasedTestClass{
-    public void authorization (String user, String password){
-        Selenide.open("/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
-        $(By.name("username")).clear();
-        $(By.name("username")).setValue(user);
-        $(By.name("password")).clear();
-        $(By.name("password")).setValue(password);
-        $(By.xpath("//div[@class='footer']/button")).click();
-    }
+public class Authorization extends BasedTestClass {
+
+    // TODO на следующий раз Allure report
+
     @Test(dataProvider = "users", dataProviderClass = Dataprovider.class, groups = {"auth"})
     public void usersCanAuthorise(String user, String password) {
-        //login
-        authorization(user, password);
-        //fill text logout from title into variable
-        String x = String.valueOf($(By.xpath("//a[@title='Logout']")).getText());
-        //check
-        $x("//a[@title='Logout']").shouldBe(Condition.visible.because("Element "+x+" is not visible"));
+        //login with users from Dataprovider
+        new LoginPage().loginAs(user, password);
+        //check for visible of TopBarButtons
+        TopMenuBar topMenuBar = new TopMenuBar();
+        topMenuBar.logoutShouldBeVisible();
         System.out.println("Login as <" + user + "> is success");
-        $x("//a[@title='Logout']").click();
-    }
-
-    public void outAlertTextAfterAuth(){
-        String a = String.valueOf($(By.xpath("//div[@class='alert alert-danger']")).getText());
-        System.out.println("Visible text of alert:");
-        System.out.println(a);
+        topMenuBar.clickLogout();
     }
 
     @Test(groups = {"auth"}, priority = 2)
@@ -66,5 +55,20 @@ public class Authorization extends BasedTestClass{
         $x("//div[@class='alert alert-danger']/i").shouldNot(Condition.text("The user could not be found in our database")
                 .because("The text of don't finding user is not present"));
         outAlertTextAfterAuth();
+    }
+
+    public void authorization(String user, String password) {
+        Selenide.open("/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
+        $(By.name("username")).clear();
+        $(By.name("username")).setValue(user);
+        $(By.name("password")).clear();
+        $(By.name("password")).setValue(password);
+        $(By.xpath("//div[@class='footer']/button")).click();
+    }
+
+    public void outAlertTextAfterAuth() {
+        String a = String.valueOf($(By.xpath("//div[@class='alert alert-danger']")).getText());
+        System.out.println("Visible text of alert:");
+        System.out.println(a);
     }
 }

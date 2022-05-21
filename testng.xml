@@ -8,19 +8,19 @@
             <exclude name="checkCatalog"/>
         </run>
     </groups>
-    <test name="authorization">
+    <test name="authorization" parallel="methods">
         <classes>
             <class name="petr.example.Authorization"></class>
         </classes>
     </test>
-    <test name="checkForCustomers">
+    <test name="checkForCustomers" parallel="methods">
         <classes>
             <class name="petr.example.customers.CustomersTest"></class>
             <class name="petr.example.customers.ImportExportTest"></class>
             <class name="petr.example.customers.NewsletterTest"></class>
         </classes>
     </test>
-    <test name="checkForCatalog">
+    <test name="checkForCatalog" parallel="methods">
         <classes>
             <class name="petr.example.catalog.Catalog"></class>
             <class name="petr.example.catalog.Attributes"></class>
