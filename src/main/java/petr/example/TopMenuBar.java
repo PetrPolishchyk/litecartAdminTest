@@ -15,6 +15,6 @@ public class TopMenuBar {
     public void logoutShouldBeVisible() {
         $(buttonLogout).as("Logout button").shouldBe(Condition.visible.because("Logout button is not visible"));
         $(buttonLogout).shouldHave(Condition.text("Logout"));
-        System.out.println("Text of Button is <" + x + ">");
+        System.out.println("Text of button is <" + x + ">");
     }
 }

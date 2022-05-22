@@ -7,6 +7,7 @@ import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import petr.example.Authorization;
+import petr.example.LoginPageAdmin;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -15,8 +16,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class CustomersTest {
     @BeforeGroups(value = "checkCustomers", dependsOnGroups = {"auth"})
     public void authorization() {
-        Authorization auth = new Authorization();
-        auth.authorization("admin", "admin");
+        new LoginPageAdmin().loginAs("admin", "admin");
     }
 
     @Test(groups = {"checkCustomers"}, priority = 1)
@@ -45,6 +45,7 @@ public class CustomersTest {
         $x("//input[@name='city']").setValue("Vinnitsya");
         $x("//select[@name='country_code']").selectOption("Ukraine");
         $x("//input[@name='phone']").setValue("+380971111111");
+        $x("//input[@name='new_password']").setValue("123456");
         $x("//input[@name='code']").setValue("102030");
         $x("//textarea[@name='notes']").setValue("Testing customer by autotest");
         $x("//input[@name='different_shipping_address']").setSelected(true);

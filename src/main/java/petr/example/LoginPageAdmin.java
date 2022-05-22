@@ -5,10 +5,12 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class LoginPage {
+public class LoginPageAdmin {
     private By username = By.name("username");
     private By password = By.name("password");
     private By buttonLogin = By.xpath("//div[@class='footer']/button");
+    public By allertText = By.xpath("//div[@class='alert alert-danger']");
+    public By allertTextValue = By.xpath("//div[@class='alert alert-danger']/i");
 
     public void loginAs(String user, String password) {
         Selenide.open("/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
@@ -25,5 +27,11 @@ public class LoginPage {
     public void setLogin(String value) {
         $(username).clear();
         $(username).setValue(value);
+    }
+
+    public void outAlertTextAfterAuth() {
+        String a = String.valueOf($(allertText).getText());
+        System.out.println("Visible text of alert:");
+        System.out.println(a);
     }
 }
