@@ -7,6 +7,7 @@ import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import petr.example.Authorization;
+import petr.example.LeftSideBar;
 import petr.example.LoginPageAdmin;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -21,7 +22,7 @@ public class CustomersTest {
 
     @Test(groups = {"checkCustomers"}, priority = 1)
     public void checkCustomers() {
-        $x("//a[@href='http://localhost/litecart/admin/?app=customers&doc=customers']/span[@title='Customers']").click();
+        new LeftSideBar().pressCustomers();
         $x("//div[@class='panel-heading']").shouldBe(Condition.text("Customers").because("Customers is not present"));
         System.out.println("Customers is visible correctly");
         $x("//div[@class='btn-group']/button[1]").click();
@@ -31,7 +32,7 @@ public class CustomersTest {
 
     @Test(groups = {"checkCustomers"}, priority = 2)
     public void addNewCustomer() {
-        $x("//a[@href='http://localhost/litecart/admin/?app=customers&doc=customers']/span[@title='Customers']").click();
+        new LeftSideBar().pressCustomers();
         $x("//a[@href='http://localhost/litecart/admin/?app=customers&doc=edit_customer&page=1&sort=date_created']").click();
         $x("//label[text()='Email Address']/parent::div//input[@type='email']").clear();
         $x("//label[text()='Email Address']/parent::div//input[@type='email']").setValue("customer@gmail.com");
