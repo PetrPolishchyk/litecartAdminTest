@@ -1,20 +1,17 @@
 package petr.example;
 
 import com.codeborne.selenide.Condition;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Issue;
-import io.qameta.allure.Story;
-import io.qameta.allure.TmsLink;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
 
-@Epic("Авторизация")
+@Feature("Авторизация")
 public class Authorization extends BasedTestClass {
     //TODO на следующий раз Allure report
 
-    @Test(dataProvider = "users", dataProviderClass = DataProvider.class, groups = {"auth"})
+    @Test(description = "Авторизация пользователя", dataProvider = "users", dataProviderClass = DataProvider.class, groups = {"auth"})
     @Story("Проверяем может ли пользователь авторизоваться")
     @Issue("AAA-25")
     @TmsLink("TMS-25")
@@ -26,10 +23,9 @@ public class Authorization extends BasedTestClass {
         topMenuBar.logoutShouldBeVisible();
         System.out.println("Login as <" + user + "> is success");
         topMenuBar.clickLogout();
-        screenshot("usersCanAuthorise");
     }
 
-    @Test(groups = {"auth"}, priority = 2)
+    @Test(description = "Блокирование пользователя",groups = {"auth"}, priority = 2)
     public void usersMustToDisable() {
         //first try to type wrong pass
         LoginPageAdmin authForDisable = new LoginPageAdmin();

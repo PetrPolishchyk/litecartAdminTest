@@ -1,13 +1,17 @@
 package petr.example;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPageAdmin {
     private By username = By.name("username");
+    private By usernameFake = By.cssSelector("azazazaza");
     private By password = By.name("password");
     private By buttonLogin = By.xpath("//div[@class='footer']/button");
     public By allertText = By.xpath("//div[@class='alert alert-danger']");

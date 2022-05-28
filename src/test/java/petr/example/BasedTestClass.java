@@ -8,6 +8,11 @@ public class BasedTestClass {
     public BasedTestClass() {
         Configuration.timeout = 6000;
         Configuration.baseUrl = "http://localhost/litecart";
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        SelenideLogger.addListener("AllureSelenide",
+                        new AllureSelenide()
+                                .includeSelenideSteps(false)
+                                .screenshots(true)
+        );
+
     }
 }

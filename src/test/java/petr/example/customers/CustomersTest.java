@@ -1,6 +1,7 @@
 package petr.example.customers;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Feature;
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterGroups;
@@ -16,6 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 //@Test
+@Feature("Покупатели")
 public class CustomersTest {
     @BeforeGroups(groups = {"checkCustomers"}, dependsOnGroups = {"auth"})
     public void authorization() {
