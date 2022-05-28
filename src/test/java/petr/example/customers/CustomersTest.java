@@ -5,17 +5,19 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import petr.example.Authorization;
 import petr.example.LeftSideBar;
 import petr.example.LoginPageAdmin;
+import petr.example.TopMenuBar;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 //@Test
 public class CustomersTest {
-    @BeforeGroups(value = "checkCustomers", dependsOnGroups = {"auth"})
+    @BeforeGroups(groups = {"checkCustomers"}, dependsOnGroups = {"auth"})
     public void authorization() {
         new LoginPageAdmin().loginAs("admin", "admin");
     }
@@ -56,7 +58,7 @@ public class CustomersTest {
     }
 
     private void findAddedCustomer(String nameOfCustoner) {
-        $x("//a[@href='http://localhost/litecart/admin/?app=customers&doc=customers']/span[@title='Customers']").click();
+        new LeftSideBar().pressCustomers();
         $x("//div[@class='panel-filter']//input[@type='search']").setValue(nameOfCustoner).pressEnter();
         boolean existAddedCustomer = $x("//div[@class='panel-body']/form/table/tbody/tr/td[starts-with(text(),'Alexander')]").exists();
         System.out.println(existAddedCustomer);
@@ -87,6 +89,6 @@ public class CustomersTest {
 
     @AfterGroups(value = "checkCustomers")
     public void logout() {
-        $x("//a[@title='Logout']").click();
+        new TopMenuBar().clickLogout();
     }
 }

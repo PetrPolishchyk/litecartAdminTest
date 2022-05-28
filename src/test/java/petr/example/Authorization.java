@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 //@Test
 public class Authorization extends BasedTestClass {
 
-    // TODO на следующий раз Allure report
+    //TODO на следующий раз Allure report
 
     @Test(dataProvider = "users", dataProviderClass = Dataprovider.class, groups = {"auth"})
     public void usersCanAuthorise(String user, String password) {
