@@ -2,11 +2,10 @@ package petr.example;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.testng.annotations.DataProvider;
 
-public class Dataprovider {
+public class DataProvider {
     @Contract(value = " -> new", pure = true)
-    @DataProvider(name = "users")
+    @org.testng.annotations.DataProvider(name = "users")
     public static Object[] @NotNull [] users() {
         return new Object[][]{
                 new Object[]{"admin", "admin"},

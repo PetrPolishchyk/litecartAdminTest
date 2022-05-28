@@ -1,19 +1,23 @@
 package petr.example;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import org.openqa.selenium.By;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.screenshot;
 
-//@Test
+@Epic("Авторизация")
 public class Authorization extends BasedTestClass {
-
     //TODO на следующий раз Allure report
 
-    @Test(dataProvider = "users", dataProviderClass = Dataprovider.class, groups = {"auth"})
+    @Test(dataProvider = "users", dataProviderClass = DataProvider.class, groups = {"auth"})
+    @Story("Проверяем может ли пользователь авторизоваться")
+    @Issue("AAA-25")
+    @TmsLink("TMS-25")
     public void usersCanAuthorise(String user, String password) {
         //login with users from Dataprovider
         new LoginPageAdmin().loginAs(user, password);
@@ -22,6 +26,7 @@ public class Authorization extends BasedTestClass {
         topMenuBar.logoutShouldBeVisible();
         System.out.println("Login as <" + user + "> is success");
         topMenuBar.clickLogout();
+        screenshot("usersCanAuthorise");
     }
 
     @Test(groups = {"auth"}, priority = 2)
