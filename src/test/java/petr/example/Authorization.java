@@ -26,7 +26,7 @@ public class Authorization extends BasedTestClass {
     }
 
     @Test(description = "Блокирование пользователя",groups = {"auth"}, priority = 2)
-    public void usersMustToDisable() {
+    public void usersMustDisable() {
         //first try to type wrong pass
         LoginPageAdmin authForDisable = new LoginPageAdmin();
         authForDisable.loginAs("toblock", "noadmin");
