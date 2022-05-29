@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 //@Test
-@Feature("Покупатели")
+@Feature("Customers")
 public class CustomersTest {
     @BeforeGroups(groups = {"checkCustomers"}, dependsOnGroups = {"auth"})
     public void authorization() {

@@ -7,12 +7,12 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
 
-@Feature("Авторизация")
+@Feature("Authorization")
 public class Authorization extends BasedTestClass {
-    //TODO на следующий раз Allure report
+    //TODO Allure report
 
-    @Test(description = "Авторизация пользователя", dataProvider = "users", dataProviderClass = DataProvider.class, groups = {"auth"})
-    @Story("Проверяем может ли пользователь авторизоваться")
+    @Test(description = "Authorization of users", dataProvider = "users", dataProviderClass = DataProvider.class, groups = {"auth"})
+    @Story("Check of users authorization")
     @Issue("AAA-25")
     @TmsLink("TMS-25")
     public void usersCanAuthorise(String user, String password) {
@@ -25,7 +25,7 @@ public class Authorization extends BasedTestClass {
         topMenuBar.clickLogout();
     }
 
-    @Test(description = "Блокирование пользователя",groups = {"auth"}, priority = 2)
+    @Test(description = "Blocking of the user",groups = {"auth"}, priority = 2)
     public void usersMustDisable() {
         //first try to type wrong pass
         LoginPageAdmin authForDisable = new LoginPageAdmin();

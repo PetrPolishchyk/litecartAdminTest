@@ -17,7 +17,7 @@ public class LoginPageAdmin {
     public By allertText = By.xpath("//div[@class='alert alert-danger']");
     public By allertTextValue = By.xpath("//div[@class='alert alert-danger']/i");
 
-    @Step("Авторизуемся как {0}")
+    @Step("Authorization like {0}")
     public void loginAs(String user, String password) {
         Selenide.open("/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
         setLogin(user);
@@ -25,19 +25,19 @@ public class LoginPageAdmin {
         $(buttonLogin).click();
     }
 
-    @Step("Устанавливаем пароль")
+    @Step("Input the password")
     public void setPassword(String value) {
         $(password).clear();
         $(password).setValue(value);
     }
 
-    @Step("Устанавливаем логин {0}")
+    @Step("Input the username {0}")
     public void setLogin(String value) {
         $(username).clear();
         $(username).setValue(value);
     }
 
-    @Step("Проверяем текст всплывающего сообщения")
+    @Step("Check the validation text")
     public void outAlertTextAfterAuth() {
         String a = String.valueOf($(allertText).getText());
         System.out.println("Visible text of alert:");
